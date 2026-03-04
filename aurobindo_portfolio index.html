@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurobindo Nayagi S — Digital Marketing Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F3EE;
+    --clay: #C17B4A;
+    --deep: #1A1209;
+    --rust: #A34B2A;
+    --sand: #E6D5C1;
+    --muted: #7A6755;
+    --accent: #3B6E5C;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--deep); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(247,243,238,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--sand);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 4rem;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--clay); }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--clay); }
+
+  .hero {
+    min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 8rem 4rem 4rem; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; right: -10%; top: 10%;
+    width: 55%; height: 80%;
+    background: radial-gradient(ellipse at center, var(--sand) 0%, transparent 70%);
+    opacity: 0.6; border-radius: 50%; pointer-events: none;
+  }
+  .hero-tag { display: inline-block; background: var(--clay); color: white; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 2px; margin-bottom: 1.5rem; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 900; line-height: 1.08; margin-bottom: 1.5rem; }
+  .hero h1 em { font-style: italic; color: var(--clay); }
+  .hero-desc { font-size: 1.05rem; color: var(--muted); line-height: 1.75; max-width: 480px; margin-bottom: 2.5rem; }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--clay); color: white; padding: 0.85rem 2rem; border-radius: 4px; font-size: 0.88rem; font-weight: 600; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+  .btn-primary:hover { background: var(--rust); transform: translateY(-2px); }
+  .btn-outline { border: 1.5px solid var(--clay); color: var(--clay); padding: 0.85rem 2rem; border-radius: 4px; font-size: 0.88rem; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+  .btn-outline:hover { background: var(--clay); color: white; }
+  .hero-right { display: flex; flex-direction: column; gap: 1.2rem; padding-left: 4rem; position: relative; z-index: 1; }
+  .stat-card { background: white; border-radius: 10px; padding: 1.5rem 2rem; box-shadow: 0 2px 20px rgba(0,0,0,0.06); border-left: 4px solid var(--clay); }
+  .stat-card:nth-child(2) { margin-left: 2rem; border-left-color: var(--accent); }
+  .stat-card:nth-child(3) { border-left-color: var(--rust); }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--clay); }
+  .stat-card:nth-child(2) .stat-num { color: var(--accent); }
+  .stat-card:nth-child(3) .stat-num { color: var(--rust); }
+  .stat-label { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; font-weight: 500; }
+
+  section { padding: 6rem 4rem; }
+  .section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--clay); margin-bottom: 0.75rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 900; line-height: 1.15; margin-bottom: 1rem; }
+  .section-sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 600px; margin-bottom: 3rem; }
+
+  .about { background: white; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-quote { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic; line-height: 1.6; color: var(--deep); border-left: 3px solid var(--clay); padding-left: 1.5rem; margin-bottom: 2rem; }
+  .about-text { font-size: 0.95rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.2rem; }
+  .contact-line { display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: var(--muted); margin-bottom: 0.6rem; }
+  .contact-line span { font-weight: 600; color: var(--deep); }
+
+  .skills { background: var(--deep); color: var(--cream); }
+  .skills .section-title { color: var(--cream); }
+  .skills .section-sub { color: #9e8e7e; }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .skill-group { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 2rem; transition: border-color 0.2s, transform 0.2s; }
+  .skill-group:hover { border-color: var(--clay); transform: translateY(-3px); }
+  .skill-group-title { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--clay); font-weight: 700; margin-bottom: 1.2rem; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag { background: rgba(193,123,74,0.15); color: #ddb89a; font-size: 0.78rem; padding: 0.35rem 0.8rem; border-radius: 20px; font-weight: 500; }
+
+  .experience { background: var(--cream); }
+  .exp-card { background: white; border-radius: 12px; padding: 2.5rem; box-shadow: 0 2px 24px rgba(0,0,0,0.06); max-width: 900px; }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+  .exp-role { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; }
+  .exp-company { color: var(--clay); font-weight: 600; margin-top: 0.2rem; }
+  .exp-dates { background: var(--sand); color: var(--muted); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 20px; white-space: nowrap; }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li { padding: 0.6rem 0; border-bottom: 1px solid var(--sand); font-size: 0.92rem; color: var(--muted); line-height: 1.6; padding-left: 1.2rem; position: relative; }
+  .exp-bullets li:last-child { border-bottom: none; }
+  .exp-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--clay); font-size: 0.8rem; }
+
+  .casestudy { background: var(--sand); }
+  .cs-hero { background: var(--deep); border-radius: 16px; padding: 3rem; margin-bottom: 2.5rem; color: var(--cream); position: relative; overflow: hidden; }
+  .cs-badge { display: inline-block; background: var(--clay); color: white; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; padding: 0.35rem 0.9rem; border-radius: 2px; margin-bottom: 1rem; }
+  .cs-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; margin-bottom: 0.75rem; }
+  .cs-sub { color: #9e8e7e; font-size: 0.95rem; line-height: 1.7; max-width: 600px; }
+  .cs-stats { display: flex; gap: 2.5rem; margin-top: 2rem; flex-wrap: wrap; }
+  .cs-stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: var(--clay); }
+  .cs-stat-label { font-size: 0.72rem; color: #9e8e7e; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
+  .cs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .cs-card { background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 2px 20px rgba(0,0,0,0.05); }
+  .cs-card-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }
+  .cs-card-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--clay); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 1rem; }
+  .cs-list { list-style: none; }
+  .cs-list li { font-size: 0.84rem; color: var(--muted); padding: 0.4rem 0; border-bottom: 1px solid var(--sand); line-height: 1.5; }
+  .cs-list li:last-child { border-bottom: none; }
+  .phase-timeline { display: flex; gap: 1rem; margin-top: 2.5rem; }
+  .phase { flex: 1; background: white; border-radius: 10px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.05); border-top: 3px solid var(--clay); }
+  .phase:nth-child(2) { border-top-color: var(--accent); }
+  .phase:nth-child(3) { border-top-color: var(--rust); }
+  .phase-num { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; color: var(--clay); text-transform: uppercase; margin-bottom: 0.4rem; }
+  .phase:nth-child(2) .phase-num { color: var(--accent); }
+  .phase:nth-child(3) .phase-num { color: var(--rust); }
+  .phase-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.75rem; }
+  .phase-items { list-style: none; }
+  .phase-items li { font-size: 0.78rem; color: var(--muted); padding: 0.25rem 0; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+  .projects { background: white; }
+  .proj-card { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; background: var(--cream); border-radius: 14px; padding: 2.5rem; align-items: center; }
+  .proj-tag-row { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .proj-tag { background: var(--sand); color: var(--muted); font-size: 0.72rem; padding: 0.3rem 0.7rem; border-radius: 20px; font-weight: 600; }
+  .proj-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .proj-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; }
+  .proj-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--clay); font-weight: 600; font-size: 0.88rem; text-decoration: none; transition: gap 0.2s; }
+  .proj-link:hover { gap: 0.9rem; }
+  .proj-visual { background: var(--deep); border-radius: 10px; padding: 2rem; color: var(--cream); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; }
+  .proj-visual-label { font-size: 0.7rem; color: #9e8e7e; letter-spacing: 0.1em; text-transform: uppercase; }
+  .proj-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+  .proj-metric-num { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 900; color: var(--clay); }
+  .proj-metric-label { font-size: 0.72rem; color: #9e8e7e; }
+
+  .edu { background: var(--deep); color: var(--cream); }
+  .edu .section-title { color: var(--cream); }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+  .edu-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 2rem; }
+  .edu-degree { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .edu-school { color: var(--clay); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.3rem; }
+  .edu-year { color: #9e8e7e; font-size: 0.82rem; }
+  .edu-score { margin-top: 0.75rem; display: inline-block; background: rgba(193,123,74,0.2); color: var(--clay); font-size: 0.78rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 20px; }
+  .certs-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--cream); margin-bottom: 1.2rem; }
+  .cert-list { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .cert-badge { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #c8b8a8; font-size: 0.82rem; padding: 0.6rem 1.2rem; border-radius: 6px; font-weight: 500; }
+
+  footer { background: var(--clay); color: white; text-align: center; padding: 3rem 2rem; }
+  footer h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; margin-bottom: 0.75rem; }
+  footer p { font-size: 0.9rem; opacity: 0.85; margin-bottom: 1.5rem; }
+  .contact-row { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .contact-item { font-size: 0.88rem; opacity: 0.9; }
+  .contact-item strong { display: block; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; margin-bottom: 0.2rem; }
+  footer small { opacity: 0.5; font-size: 0.75rem; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; }
+    .hero-right { padding-left: 0; margin-top: 2rem; }
+    section { padding: 4rem 2rem; }
+    .about-grid, .cs-grid, .edu-grid, .proj-card { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .phase-timeline { flex-direction: column; }
+    .kpi-grid { grid-template-columns: repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Aurobindo Nayagi S</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#casestudy">Case Study</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div>
+    <div class="hero-tag">Digital Marketing Portfolio</div>
+    <h1>Where <em>Data Meets</em><br>Marketing Strategy</h1>
+    <p class="hero-desc">Results-driven professional transitioning into digital marketing — combining analytical rigor with creative strategy to drive measurable business growth.</p>
+    <div class="hero-ctas">
+      <a href="/cdn-cgi/l/email-protection#137266617c717a7d777c7d726a72747a53747e727a7f3d707c7e" class="btn-primary">Get In Touch</a>
+      <a href="#casestudy" class="btn-outline">View Case Study</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-card">
+      <div class="stat-num">SEO + Analytics</div>
+      <div class="stat-label">Dual-skill advantage: organic growth backed by data</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3+ Tools</div>
+      <div class="stat-label">Power BI · SQL · Python — performance dashboards that inform decisions</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">Live Blog</div>
+      <div class="stat-label">Namma Kitchen — real SEO project with indexed pages & tracked keywords</div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-label">About Me</div>
+      <div class="section-title">The Analyst Who Thinks Like a Marketer</div>
+      <blockquote class="about-quote">"I bring the analytical rigor of a data analyst to the creativity of digital marketing."</blockquote>
+      <p class="about-text">I'm Aurobindo Nayagi S — an MCA candidate at SRM Institute of Technology, Chennai, with a strong foundation in data analytics and a genuine passion for digital marketing. I don't just run campaigns; I instrument them, measure them, and optimize based on evidence.</p>
+      <p class="about-text">My background in SQL, Python, and Power BI means I can build dashboards, read performance data, and communicate with developers — bridging the technical and creative sides of marketing.</p>
+    </div>
+    <div>
+      <div class="section-label" style="margin-bottom:1.5rem;">Contact & Links</div>
+      <div class="contact-line">📞 <span>+91-72997-66900</span></div>
+      <div class="contact-line">✉️ <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d9b8acabb6bbb0b7bdb6b7b8a0b8beb099beb4b8b0b5f7bab6b4">[email&#160;protected]</a></span></div>
+      <div class="contact-line">🌐 <a href="https://nammakitchen2026.blogspot.com/" target="_blank" style="color:var(--clay);font-weight:600;">nammakitchen2026.blogspot.com</a></div>
+      <div class="contact-line">📍 <span>Chennai, Tamil Nadu, India</span></div>
+      <div style="margin-top:2rem;">
+        <div class="section-label" style="margin-bottom:1rem;">Current Status</div>
+        <div style="background:var(--cream);border-radius:8px;padding:1rem 1.2rem;">
+          <div style="font-weight:700;margin-bottom:0.2rem;">MCA (2026) — SRM Institute of Technology</div>
+          <div style="font-size:0.85rem;color:var(--muted);">Open to digital marketing roles & internships</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skills" id="skills">
+  <div class="section-label">Core Competencies</div>
+  <div class="section-title">Skills & Tools</div>
+  <p class="section-sub">A rare combination of marketing know-how and data engineering depth.</p>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Digital Marketing</div>
+      <div class="skill-tags">
+        <span class="skill-tag">SEO</span>
+        <span class="skill-tag">Keyword Research</span>
+        <span class="skill-tag">On-Page Optimization</span>
+        <span class="skill-tag">Content Marketing</span>
+        <span class="skill-tag">Social Media Marketing</span>
+        <span class="skill-tag">Google Ads</span>
+        <span class="skill-tag">Meta Ads</span>
+        <span class="skill-tag">Campaign Tracking</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Analytics & Tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Google Analytics GA4</span>
+        <span class="skill-tag">Google Search Console</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">MS Excel</span>
+        <span class="skill-tag">Dashboard Reporting</span>
+        <span class="skill-tag">Performance Tracking</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Technical</div>
+      <div class="skill-tags">
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">CTEs & Window Functions</span>
+        <span class="skill-tag">Data Cleaning</span>
+        <span class="skill-tag">GA4 Implementation</span>
+        <span class="skill-tag">Ad Tracking Setup</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="experience" id="experience">
+  <div class="section-label">Work Experience</div>
+  <div class="section-title">Professional Background</div>
+  <p class="section-sub">Hands-on analytics work that directly informs marketing decisions.</p>
+  <div class="exp-card">
+    <div class="exp-header">
+      <div>
+        <div class="exp-role">Data Analyst Intern</div>
+        <div class="exp-company">ITFlex Solutions India Pvt Ltd.</div>
+      </div>
+      <div class="exp-dates">Jan 2025 — June 2025</div>
+    </div>
+    <ul class="exp-bullets">
+      <li>Analyzed website and user data to support business and development teams using SQL and Python.</li>
+      <li>Cleaned and structured data from various sources, including Google Analytics and internal databases.</li>
+      <li>Developed dashboards and visual reports using Excel and Power BI, improving visibility into user behavior and conversion trends.</li>
+      <li>Collaborated with web developers to track and analyze form submissions, page visits, and session durations.</li>
+      <li>Wrote and optimized complex SQL queries (joins, CTEs, window functions) to generate weekly performance insights.</li>
+      <li>Presented actionable insights that contributed to UI improvements and increased user engagement.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="casestudy" id="casestudy">
+  <div class="section-label">Featured Case Study</div>
+  <div class="section-title">Nuvocotto — 360° Digital Marketing Strategy</div>
+  <p class="section-sub">A hypothetical end-to-end digital marketing strategy for Nuvocotto, a 23-year-old terracotta products brand — covering SEO, social media, Google Ads, and Meta Ads.</p>
+
+  <div class="cs-hero">
+    <div class="cs-badge">Hypothetical Case Study</div>
+    <div class="cs-title">Nuvocotto Digital Marketing Strategy</div>
+    <p class="cs-sub">SEO & Content · Social Media · Google & Meta Ads · Brand Strategy — a comprehensive 360° plan to transform Nuvocotto's digital presence.</p>
+    <div class="cs-stats">
+      <div><div class="cs-stat-num">₹85K</div><div class="cs-stat-label">Monthly Ad Budget</div></div>
+      <div><div class="cs-stat-num">12 Mo</div><div class="cs-stat-label">Roadmap</div></div>
+      <div><div class="cs-stat-num">4</div><div class="cs-stat-label">Digital Channels</div></div>
+      <div><div class="cs-stat-num">+200%</div><div class="cs-stat-label">Target Organic Traffic</div></div>
+    </div>
+  </div>
+
+  <div class="cs-grid">
+    <div class="cs-card">
+      <div class="cs-card-icon">🔍</div>
+      <div class="cs-card-title">SEO & Content Strategy</div>
+      <ul class="cs-list">
+        <li>Target keywords: 'terracotta roof tiles India', 'clay floor tiles Chennai', 'jaali wall design'</li>
+        <li>On-page: meta titles, structured data (Product schema), image alt-text, mobile-first page speed</li>
+        <li>Content: 2 blog posts/month, project showcases, comparison guides, FAQ pages per product</li>
+        <li>Off-page: location pages for Bangalore & Chennai, guest posts on architecture blogs</li>
+        <li><strong>Goal: 50+ keywords in Top 10 · DA from ~15 → 30+</strong></li>
+      </ul>
+    </div>
+    <div class="cs-card">
+      <div class="cs-card-icon" style="background:var(--accent);">📱</div>
+      <div class="cs-card-title">Social Media Strategy</div>
+      <ul class="cs-list">
+        <li><strong>Instagram</strong> — 1 post/day: aesthetic shots, reels, before/after reveals</li>
+        <li><strong>Pinterest</strong> — 10 pins/week: product + project boards linked to product pages</li>
+        <li><strong>LinkedIn</strong> — 3 posts/week: project case studies, sustainability, thought leadership</li>
+        <li><strong>YouTube</strong> — 2 videos/month: factory tours, installation guides, testimonials</li>
+        <li>Content pillars: Inspire · Educate · Showcase · Engage</li>
+      </ul>
+    </div>
+    <div class="cs-card">
+      <div class="cs-card-icon" style="background:var(--rust);">📢</div>
+      <div class="cs-card-title">Google Ads Strategy</div>
+      <ul class="cs-list">
+        <li>Search Ads (50% — ₹25K): high-intent keywords, exact & phrase match</li>
+        <li>Display/Remarketing (20% — ₹10K): product imagery to past visitors</li>
+        <li>Performance Max (20% — ₹10K): AI-optimized across Search, Display, YouTube, Gmail</li>
+        <li>Local Campaigns (10% — ₹5K): Bangalore/Chennai footfall + WhatsApp enquiries</li>
+        <li><strong>Target by Month 6: 80–100 leads/mo · CTR &gt;3% · CPL &lt;₹500</strong></li>
+      </ul>
+    </div>
+    <div class="cs-card">
+      <div class="cs-card-icon" style="background:var(--deep);">📘</div>
+      <div class="cs-card-title">Meta Ads Strategy</div>
+      <ul class="cs-list">
+        <li><strong>TOFU (₹10K)</strong> — Reach & Brand Awareness: video reels + carousel to architecture/home renovation audience</li>
+        <li><strong>MOFU (₹15K)</strong> — Traffic & Lead Gen: lookalike audiences, lead form ads + catalogue ads</li>
+        <li><strong>BOFU (₹10K)</strong> — Conversion: remarketing to video viewers, click-to-WhatsApp ads</li>
+        <li>Pro Tip: UGC-style videos & architect testimonials for highest CTR in this category</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top:2.5rem;">
+    <div class="section-label" style="margin-bottom:1rem;">12-Month Roadmap</div>
+    <div class="phase-timeline">
+      <div class="phase">
+        <div class="phase-num">Phase 1 · Months 1–3</div>
+        <div class="phase-title">Foundation</div>
+        <ul class="phase-items">
+          <li>Website SEO audit & fixes</li>
+          <li>GA4 & Search Console setup</li>
+          <li>Instagram & Pinterest profiles</li>
+          <li>Google Search Ads (test)</li>
+          <li>6 SEO blog posts</li>
+          <li>Define brand tone & visual style</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-num">Phase 2 · Months 4–6</div>
+        <div class="phase-title">Growth</div>
+        <ul class="phase-items">
+          <li>Scale Google Ads to full budget</li>
+          <li>Launch Meta Ads (all funnel stages)</li>
+          <li>Ramp Instagram to daily posting</li>
+          <li>Start YouTube channel</li>
+          <li>Build email list via lead magnets</li>
+          <li>Architecture niche influencer collab</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-num">Phase 3 · Months 7–12</div>
+        <div class="phase-title">Scale & Optimize</div>
+        <ul class="phase-items">
+          <li>Optimize based on 6-month data</li>
+          <li>Launch Performance Max campaigns</li>
+          <li>Pinterest SEO at full throttle</li>
+          <li>Retargeting for abandoned enquiries</li>
+          <li>Case study content series</li>
+          <li>Franchise lead campaigns</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;background:var(--deep);border-radius:12px;padding:2.5rem;color:var(--cream);">
+    <div class="section-label" style="margin-bottom:1.2rem;">Target KPIs</div>
+    <div class="kpi-grid">
+      <div><div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--clay);">+200%</div><div style="font-size:0.75rem;color:#9e8e7e;margin-top:0.2rem;">Organic Traffic (12 months)</div></div>
+      <div><div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--clay);">50+</div><div style="font-size:0.75rem;color:#9e8e7e;margin-top:0.2rem;">Keywords in Top 10</div></div>
+      <div><div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--clay);">80–100</div><div style="font-size:0.75rem;color:#9e8e7e;margin-top:0.2rem;">Leads / Month (Ads)</div></div>
+      <div><div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--clay);">&lt;₹500</div><div style="font-size:0.75rem;color:#9e8e7e;margin-top:0.2rem;">Cost Per Lead Target</div></div>
+    </div>
+    <div style="margin-top:1.2rem;font-size:0.78rem;color:#9e8e7e;">Tools: Google Analytics 4 · Search Console · Meta Ads Manager · Power BI Dashboard</div>
+  </div>
+</section>
+
+<section class="projects" id="projects">
+  <div class="section-label">Projects</div>
+  <div class="section-title">Real Work, Real Results</div>
+  <p class="section-sub">Not theoretical — a live project built, tracked, and optimized from scratch.</p>
+  <div class="proj-card">
+    <div>
+      <div class="proj-tag-row">
+        <span class="proj-tag">SEO</span>
+        <span class="proj-tag">Content Strategy</span>
+        <span class="proj-tag">Google Search Console</span>
+        <span class="proj-tag">Live Project</span>
+      </div>
+      <div class="proj-title">Namma Kitchen 2026 Blog</div>
+      <p class="proj-desc">Created and managed a fully SEO-optimized food blog from scratch. Indexed pages via Google Search Console, tracked search visibility and performance metrics, performed keyword research, and implemented on-page SEO to improve organic reach.</p>
+      <p class="proj-desc">Built performance dashboards connecting organic traffic signals to content improvements — proof of end-to-end digital marketing execution.</p>
+      <a href="https://nammakitchen2026.blogspot.com/" target="_blank" class="proj-link">Visit Live Blog →</a>
+    </div>
+    <div class="proj-visual">
+      <div class="proj-visual-label">Project Highlights</div>
+      <div class="proj-metrics">
+        <div><div class="proj-metric-num">Indexed</div><div class="proj-metric-label">Pages via Search Console</div></div>
+        <div><div class="proj-metric-num">Tracked</div><div class="proj-metric-label">Keyword Performance</div></div>
+        <div><div class="proj-metric-num">On-Page</div><div class="proj-metric-label">SEO Implementation</div></div>
+        <div><div class="proj-metric-num">Dashboard</div><div class="proj-metric-label">Data-driven Reporting</div></div>
+      </div>
+      <div style="font-size:0.78rem;color:#9e8e7e;margin-top:1rem;">nammakitchen2026.blogspot.com</div>
+    </div>
+  </div>
+</section>
+
+<section class="edu" id="education">
+  <div class="section-label">Education</div>
+  <div class="section-title" style="color:var(--cream);">Academic Background</div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-degree">MCA — Master of Computer Applications</div>
+      <div class="edu-school">SRM Institute of Technology, Chennai</div>
+      <div class="edu-year">2024 — 2026 (Expected)</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">B.Sc. Mathematics</div>
+      <div class="edu-school">Ethiraj College of Women, Chennai</div>
+      <div class="edu-year">2016</div>
+      <div class="edu-score">81%</div>
+    </div>
+  </div>
+  <div class="certs-title">Certifications</div>
+  <div class="cert-list">
+    <div class="cert-badge">Excel Essential Training — LinkedIn</div>
+    <div class="cert-badge">Business Analysis & Process Management — Coursera</div>
+    <div class="cert-badge">SQL Essential Training — LinkedIn</div>
+  </div>
+</section>
+
+<footer>
+  <h3>Let's Work Together</h3>
+  <p>Open to digital marketing roles, internships, and freelance projects.</p>
+  <div class="contact-row">
+    <div class="contact-item"><strong>Email</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="88e9fdfae7eae1e6ece7e6e9f1e9efe1c8efe5e9e1e4a6ebe7e5">[email&#160;protected]</a></div>
+    <div cla
